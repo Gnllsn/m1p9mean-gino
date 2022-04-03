@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+	font-family: 'Nunito', sans-serif; 
+}
+html, body { height: 100%; }
+body { margin: 0; 
+}
+
+
+.btn-blue-e-kaly{
+	background-color: #046be9;
+	border-color :#046be9 ;
+	color: white;
+}
+
+.btn-blue-e-kaly:hover{
+	background-color: #055ecd;
+	border-color :#055ecd ;
+	color: white;
+}
+
+.btn-green-e-kaly{
+	background-color: #058759;
+	border-color :#058759 ;
+	color: white;
+}
+
+.btn-green-e-kaly:hover{
+	background-color: #04754d;
+	border-color :#04754d ;
+	color: white;
+}
