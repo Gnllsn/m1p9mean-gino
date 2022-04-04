@@ -1,0 +1,45 @@
+.content{
+	width: 80%;
+	margin: 0 auto;
+	padding-bottom: 10px;
+	padding-top:1px;
+}
+
+.search{
+	padding-bottom:20px;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.center{
+	display: flex;
+	justify-content: space-around;
+}
+
+.filtre{
+	display: inline-flex;
+	justify-content: space-between;
+	align-items:center;
+	margin-top: 20px;
+	mat-form-field:not(:first-child){
+		margin-left: 50px;
+	}
+}
+
+.list{
+	margin-top: 5px;
+	padding-bottom:20px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap:wrap;
+}
+
+.plat{
+	margin:20px 10px;
+	width: 240px;
+	background:white;
+	padding-bottom: 20px;
+	padding-top:10px;
+	border-radius:2.5px
+}

@@ -1,0 +1,44 @@
+<div class="content">
+	<div class="search">
+		<div class="center">
+			<div class="col-8">
+				<input type="text" class="form-control" placeholder="Entrez le nom du plat">
+			</div>
+			<div>
+				<button class="btn btn-blue-e-kaly">Rechercher</button>
+			</div>			
+		</div>
+		<div class="filtre">
+			<mat-form-field appearance="fill">
+				<mat-label>Type plat</mat-label>
+				<mat-select>
+					<mat-option value="Riz">Riz</mat-option>
+					<mat-option value="Pâtes">Pâtes</mat-option>
+					<mat-option value="Desserts">Desserts</mat-option>
+					<mat-option value="Soupes">Soupes</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field appearance="fill">
+				<mat-label>Restaurants</mat-label>
+				<mat-select>
+					<mat-option value="L'orion restaurant">L'orion restaurant</mat-option>
+					<mat-option value="La Jonquille">La Jonquille</mat-option>
+					<mat-option value="Le Carré">Le Carré</mat-option>
+					<mat-option value="Le Citizen">Le Citizen</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	</div>
+	<div class="list">
+		<div *ngFor="let ola of [1,2,3,1,2,3]" class="plat">
+			<div style="width:100%;text-align: center;">
+				<img src="/assets/sakafo.png"  style="text-align: center;">
+			</div>
+			<div style="padding: 8px 40px 1px 40px;text-align: center;">
+				<p>[name] - [type]</p>
+				<p> [restaut] - [prix] </p>
+				<p><button class="btn btn-green-e-kaly">Commander</button> </p>
+			</div>
+		</div>
+	</div>
+</div>
