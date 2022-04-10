@@ -1,10 +1,15 @@
 const routerRestaurant = require('express').Router() ; 
 const Plat = require('../models/Plat');
+const Restaurant = require('../models/Restaurant');
 const JWT = require('jsonwebtoken');
 const ObjectId =  require('mongoose').Types.ObjectId;
 
-function getRestaurant(request,response){
-	response.send('get restaurant')
+async function getRestaurant(request,response){
+	const restauts = await Restaurant.find({});
+	return response.send({
+		status : 200 ,
+		data : restauts
+	})
 }
 
 async function Ajout_Plat(request,response){
@@ -30,7 +35,7 @@ async function Ajout_Plat(request,response){
 }
 
 async function getMesPlats(request,response){
-	const _id = "6251cb30bfa30cbda4415000" ; 
+	const _id = JWT.decode(request.headers.authorization)._id+"" ; 
 	const mes_plats = await Plat.find({
 		restaut : _id
 	})
@@ -131,12 +136,12 @@ async function supprimerPlat(request,response){
 	})
 } 
 
-	function verify_token(request,response,next){
-		const token = request.headers.authorization;
-		if(!token) return response.send({
-			status : 400 ,
-			message : 'Acces denied'
-		});
+function verify_token(request,response,next){
+	const token = request.headers.authorization;
+	if(!token) return response.send({
+		status : 400 ,
+		message : 'Acces denied'
+	});
 
 	// verify token secret
 	try{
@@ -158,7 +163,7 @@ routerRestaurant.post('/ajout-plat',verify_token,Ajout_Plat);
 
 routerRestaurant.put('/plat/:id',verify_token,modifierPlat);
 
-routerRestaurant.delete('/plat/:id',supprimerPlat);
+routerRestaurant.delete('/plat/:id',verify_token,supprimerPlat);
 
 
 module.exports = routerRestaurant

@@ -11,6 +11,7 @@ const routerRestaurants = require('./routes/restaurant');
 const routerAuthentification = require('./routes/authentification');
 const routerRole = require('./routes/role');
 const routerType = require('./routes/types');
+const routerUser = require('./routes/user');
 
 
 function init_server(){
@@ -22,6 +23,7 @@ function init_server(){
 	server.use('/auth',routerAuthentification);   
 	server.use('/role',routerRole);   
 	server.use('/type',routerType);   
+	server.use('/user',routerUser);   
 
 
 	server.get('/',root);
