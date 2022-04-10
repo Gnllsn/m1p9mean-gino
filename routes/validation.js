@@ -1,16 +1,37 @@
 const Joi = require('@hapi/joi'); 
 
 // REGISTER VALIDATION
-const registerValidation = (data) =>{
+
+const registerValidationRestaut = (data) =>{
 	const validUser = Joi.object({
-		nom : Joi.string() .min(6) .required(),
-		email : Joi.string().min(6).email().required(), 
-		password : Joi.string().min(8).required(), 
-		role : Joi.object({
-			nom : Joi.string().min(2).required()
-		}).required() 
+		nom : Joi.string() .required(),
+		email : Joi.string().required(), 
+		password : Joi.string().required(), 
+		restaut : Joi.string().required(), 
+		local : Joi.string().required()
 	});
 	return validUser.validate(data)
+}
+
+const registerValidationUser = (data) =>{
+	const validUser = Joi.object({
+		nom : Joi.string() .required(),
+		email : Joi.string().required(), 
+		password : Joi.string().required() 
+	});
+	return validUser.validate(data)
+}
+
+const registerValidation = (data) =>{
+	if(data.role.nom === 'restaurant'){
+		delete data.role; 
+		return registerValidationRestaut(data);
+	}else{
+		delete data.role; 
+		delete data.restaut; 
+		delete data.local; 
+		return registerValidationUser(data);
+	}
 }
 
 

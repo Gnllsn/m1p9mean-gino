@@ -4,10 +4,9 @@ const Type = require('./Type');
 
 const Plat = mongoose.Schema({
 	nom : String,
-	restaurant : new Restaurant().schema.obj,
-	type : new Type().schema.obj,
-	prix : Number,
-	photo : String
+	restaurant : String,
+	type : String,
+	prix : Number
 }) 
 
 module.exports = mongoose.model('Plat',Plat);
