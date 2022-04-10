@@ -12,30 +12,42 @@ body { margin: 0;
 	background-color: #046be9;
 	border-color :#046be9 ;
 	color: white;
-}
-
-.btn-blue-e-kaly:hover{
-	background-color: #055ecd;
-	border-color :#055ecd ;
-	color: white;
+	&:hover{
+		background-color: #055ecd;
+		border-color :#055ecd ;
+		color: white;
+	}
 }
 
 .green-e-kaly{
 	color: #058759;
 }
 
+.blue-e-kaly{
+	color: #046be9;
+}
+
 .btn-green-e-kaly{
 	background-color: #058759;
 	border-color :#058759 ;
 	color: white;
+	&:hover {
+		background-color: #04754d;
+		border-color :#04754d ;
+		color: white;
+	}
 }
 
-.btn-green-e-kaly:hover{
-	background-color: #04754d;
-	border-color :#04754d ;
+.btn-red-e-kaly{
+	background-color: #d70614;
+	border-color :#d70614 ;
 	color: white;
+	&:hover{
+		background-color: #a40b14;
+		border-color :#a40b14 ;
+		color: white;
+	}
 }
-
 
 .mat_select_{
 	border: 1px solid #ced4da;
@@ -54,19 +66,19 @@ body { margin: 0;
 }
 
 .is-valid .mat_select_ {
-    border: 1px solid green;
+	border: 1px solid green;
 }
 
 .is-invalid .mat_select_ {
-    border: 1px solid red;
+	border: 1px solid red;
 }
 
 .is-valid ::ng-deep .mat-select-placeholder  {
-    color: green; 
+	color: green; 
 }
 
 .is-invalid ::ng-deep .mat-select-placeholder  {
-    color: red; 
+	color: red; 
 }
 
 .e-kaly-input{

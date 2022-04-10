@@ -1,0 +1,50 @@
+<div style="background: white;width: 50%;margin: 0 auto;margin-top: 20px;padding-bottom: 10px;border-radius: 2px;padding-top: 5px;box-sizing: border-box;">
+	<div style="text-align:center">
+		<h1>Modifier Plat</h1>
+	</div>
+	<form *ngIf="!loading" [formGroup]="formulaire_Control" (ngSubmit)="Control_valeur()" novalidate>
+		<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;">
+			<label>Nom</label>
+			<div class="col-6" style="margin-top: 10px;">
+				<input type="text" class="form-control" (keyup)="on_change_nom()" [ngClass]="form_error.css.nom" formControlName="nom"  placeholder="Entrez le nom du plat"  >
+				<small class="invalid-feedback" style="text-align:center" *ngIf="form_error.bool.nom" >{{form_error.texte.nom}}</small>            
+			</div>
+		</div>
+		<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;margin-top: 20px;">
+			<label>Type plat</label>
+			<div class="col-6 field">
+				<div class="e-kaly-input">
+					<div class="mat_select_" [ngClass]="form_error.css.type">
+						<mat-select (selectionChange)="on_change_type()" formControlName="type" placeholder="Selectionnnez le type du plat" style="text-align: center;" >
+							<mat-option style="text-align: center;" *ngFor="let type of types" value="{{type.type}}">{{type.type}}</mat-option>
+						</mat-select>
+					</div>
+					<div style="text-align:center;color: red;width: 100%" *ngIf="form_error.bool.type"><span >{{form_error.texte.type}}</span></div>
+				</div>
+			</div>
+		</div>
+		<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;margin-top: 20px;">
+			<label>Prix(Ar)</label>
+			<div class="col-6" style="margin-top: 10px;">
+				<input type="text" (keyup)="on_change_prix()" [ngClass]="form_error.css.prix" formControlName="prix" class="form-control"  placeholder="Entrez le prix du plat"  >
+				<small class="invalid-feedback" style="text-align:center;" *ngIf="form_error.bool.prix" >{{form_error.texte.prix}}</small>            
+			</div>
+		</div>
+		<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;margin-top: 20px;">
+			<button *ngIf="!save"  class="btn btn-blue-e-kaly" type="submit">Modifier</button>
+			<div *ngIf="save" style="width: 100%;justify-content: center;display: flex;">
+				<div *ngIf="save" class="spinner-border blue-e-kaly"  role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>
+			<div *ngIf="error_server" style="width: 100%;justify-content: center;display: flex;color: red;margin-top: 10px;">
+				<span >{{error_server}}</span>
+			</div>
+		</div>
+	</form>
+	<div style="width: 100%;justify-content: center;display: flex;">
+		<div *ngIf="loading" class="spinner-border blue-e-kaly"  role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+</div>

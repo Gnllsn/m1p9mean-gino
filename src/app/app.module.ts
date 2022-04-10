@@ -19,6 +19,7 @@ import { EKalyHomeComponent } from './components/e-kaly/e-kaly-home/e-kaly-home.
 import { MesPlatsComponent } from './components/restaurant/mes-plats/mes-plats.component';
 import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes-commandes.component';
 import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
+import { ModifierPlatComponent } from './components/restaurant/modifier-plat/modifier-plat.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-pla
     EKalyHomeComponent,
     MesPlatsComponent,
     MesCommandesComponent,
-    AjoutPlatComponent
+    AjoutPlatComponent,
+    ModifierPlatComponent
     ],
     imports: [
     BrowserModule,

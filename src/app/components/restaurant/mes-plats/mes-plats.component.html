@@ -20,16 +20,24 @@
 			</mat-form-field>
 		</div>
 	</div>
-	<div class="list">
-		<div *ngFor="let ola of [1,2,3,1,2,3]" class="plat">
+	<div *ngIf="!loading" class="list">
+		<div *ngFor="let plat of plats" class="plat">
 			<div style="width:100%;text-align: center;">
 				<img src="/assets/sakafo.png"  style="text-align: center;">
 			</div>
 			<div style="padding: 8px 40px 1px 40px;text-align: center;">
-				<p>[name] - [type]</p>
-				<p> [restaut] - [prix] </p>
-				<p><button class="btn btn-green-e-kaly">Commander</button> </p>
+				<p>{{plat.nom}} - {{plat.type}}</p>
+				<p> {{plat.prix}} Ar </p>
 			</div>
+			<div style="display:flex;justify-content: space-around;">
+				<button class="btn btn-blue-e-kaly" routerLink="/restaurant/modifier-plat/{{plat._id}}">Modifier</button> 
+				<button class="btn btn-red-e-kaly" (click)="supprimer_plat(plat._id)" >Supprimer</button> 
+			</div>
+		</div>
+	</div>
+	<div style="width: 100%;justify-content: center;display: flex;">
+		<div *ngIf="loading" class="spinner-border green-e-kaly"  role="status">
+			<span class="visually-hidden">Loading...</span>
 		</div>
 	</div>
 </div>

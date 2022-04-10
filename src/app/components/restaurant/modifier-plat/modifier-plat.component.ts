@@ -1,40 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
-    selector: 'app-ajout-plat',
-    templateUrl: './ajout-plat.component.html',
-    styleUrls: ['./ajout-plat.component.scss']
+    selector: 'app-modifier-plat',
+    templateUrl: './modifier-plat.component.html',
+    styleUrls: ['./modifier-plat.component.scss']
 })
-export class AjoutPlatComponent implements OnInit {
+export class ModifierPlatComponent implements OnInit {
 
-    loading : any = {
-        data : true ,
-        save  : false 
-    };
-
-    types : any = []  ;
+    save : boolean = false ;
+    types : any  ;
     form_error : any = {} ; 
     formulaire_Control : any ; 
     error_server : any ;
+    id_plat : any ;
+    plat : any ;
 
     constructor(
-        private api : ApiService,
-        private tools : ToolsService,
-        private formBuilder : FormBuilder
-        ) { 
-        this.formulaire_Control = formBuilder.group({
-            nom : ['',[Validators.minLength(4),Validators.required,Validators.pattern('^[a-zA-Z]+.*$')]],
-            type : ['',[Validators.required]],
-            prix : ['',[Validators.required,Validators.pattern('^[0-9]+$')]]
-        });
-    }
+        private activeRoute : ActivatedRoute,
+        private api: ApiService,
+        private tools: ToolsService,
+        private formBuilder : FormBuilder,
+        ) {}
 
     ngOnInit(): void {
-        this.initform_error();
+        this.id_plat = this.activeRoute.snapshot.paramMap.get('id');
         this.getTypes()
+        this.getPlat();
+    }
+
+    init_form_control(){
+        this.initform_error();
+        this.formulaire_Control = this.formBuilder.group({
+            nom : [''+this.plat.nom,[Validators.minLength(4),Validators.required,Validators.pattern('^[a-zA-Z]+.*$')]],
+            type : [''+this.plat.type,[Validators.required]],
+            prix : [''+this.plat.prix,[Validators.required,Validators.pattern('^[0-9]+$')]]
+        });
     }
 
     initform_error(){
@@ -69,7 +73,7 @@ export class AjoutPlatComponent implements OnInit {
         this.on_change_type();
         this.on_change_prix();
         if (this.formulaire_Control.valid) {
-            this.save_plat(this.getData())
+            this.update_plat(this.getData())
         }
     }
 
@@ -84,13 +88,10 @@ export class AjoutPlatComponent implements OnInit {
     }
 
 
-    save_plat(data:any){
+    update_plat(data:any){
         const success = (response:any) => {
             if(response.status == 200){
                 window.location.reload();
-            } else if(response.status == 400) {
-                this.error_server = response.message
-                this.loading.save = false ; 
             }
             else{
                 console.log (response);
@@ -99,8 +100,8 @@ export class AjoutPlatComponent implements OnInit {
         const error = (response:any) => {
             console.log (response) ; 
         }
-        this.loading.save = true ; 
-        this.api.save_plat(data).subscribe(success,error)
+        this.save = true ; 
+        this.api.update_plat(this.id_plat,data).subscribe(success,error)
     }
 
     // ______________ on change input ________________________________
@@ -157,13 +158,10 @@ export class AjoutPlatComponent implements OnInit {
         } 
     }
 
-    // ___________________________________________________________________________
-
     getTypes(){
         const success = (response:any) => {
             if(response.status == 200){
                 this.types = response.data ;
-                this.loading.data = false ; 
             } else {
                 console.log(response);
             }
@@ -174,4 +172,26 @@ export class AjoutPlatComponent implements OnInit {
         this.api.getTypes().subscribe(success,error)
     }
 
+    getPlat(){
+        const success = (response:any) => {
+            if(response.status == 200){
+                this.plat = response.data;
+                this.init_form_control();
+            } else if(response.status == 400) {
+                this.error_server = response.message
+                this.save = false ; 
+            }
+            else{
+                console.log (response);
+            }
+        }
+        const error = (response:any) => {
+            console.log (response) ; 
+        }
+        this.api.getPlat(this.id_plat).subscribe(success,error)  
+    }
+
+    get loading(){
+        return !this.types || !this.plat;
+    }
 }

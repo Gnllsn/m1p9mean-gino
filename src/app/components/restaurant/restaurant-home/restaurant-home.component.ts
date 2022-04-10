@@ -25,7 +25,7 @@ export class RestaurantHomeComponent implements OnInit {
 
     logOut(){
         localStorage.clear();
-        window.location.reload();
+        this.router.navigate(['/'])
     }
 
 }
