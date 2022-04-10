@@ -83,6 +83,7 @@ async function login(request,response){
 
 	// create token 
 	const token =  JWT.sign({_id : user.user._id},process.env.TOKEN_SECRET)
+	console.log(token)
 	user.password = undefined ; 
 	response.send({
 		status : 200,
