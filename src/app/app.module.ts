@@ -21,6 +21,7 @@ import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes
 import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
 import { ModifierPlatComponent } from './components/restaurant/modifier-plat/modifier-plat.component';
 import { ConfirmCommandeComponent } from './components/user/confirm-commande/confirm-commande.component';
+import { CommandeComponent } from './components/user/commande/commande.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { ConfirmCommandeComponent } from './components/user/confirm-commande/con
     MesCommandesComponent,
     AjoutPlatComponent,
     ModifierPlatComponent,
-    ConfirmCommandeComponent
+    ConfirmCommandeComponent,
+    CommandeComponent
     ],
     imports: [
     BrowserModule,

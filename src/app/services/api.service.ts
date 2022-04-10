@@ -68,5 +68,11 @@
            const options = this.tools.formOptionJSON(true);
            return this.http.post(environment.base_url+"user/commande",data,options);                
        }
+
+       getCommandes_user(){
+           const options = this.tools.formOptionJSON(true);
+           return this.http.get(environment.base_url+"user/commande",options);                
+
+       }
    }
 

@@ -8,7 +8,7 @@ import { HomeComponent } from './components/user/home/home.component';
 import { ListPlatComponent } from './components/user/list-plat/list-plat.component';
 import { CartComponent } from './components/user/cart/cart.component';
 import { UserHomeComponent } from './components/user/user-home/user-home.component';
-import { ConfirmCommandeComponent } from './components/user/confirm-commande/confirm-commande.component';
+import { CommandeComponent } from './components/user/commande/commande.component';
 
 import { RestaurantHomeComponent } from './components/restaurant/restaurant-home/restaurant-home.component';
 import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes-commandes.component';
@@ -38,8 +38,8 @@ const routes: Routes = [{
         path:'cart',
         component:CartComponent
     },{
-        path:'confirm',
-        component: ConfirmCommandeComponent
+        path:'commande',
+        component: CommandeComponent
     }]
 },{
     path:'restaurant',
