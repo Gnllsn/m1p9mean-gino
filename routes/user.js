@@ -28,6 +28,17 @@ async function ajoutCommande(request,response){
 	})
 }
 
+async function getCommandes(request,response){
+	const client = JWT.decode(request.headers.authorization)._id+"" ; 
+	const commandes  = await Commande.find({
+		client : client
+	})
+	response.send({
+		status : 200,
+		data: commandes
+	})
+}
+
 
 
 function verify_token(request,response,next){
@@ -50,6 +61,7 @@ function verify_token(request,response,next){
 }
 
 routerUser.get('/',verify_token,getPlats);
+routerUser.get('/commande',verify_token,getCommandes);
 
 routerUser.post('/commande',verify_token,ajoutCommande);
 
