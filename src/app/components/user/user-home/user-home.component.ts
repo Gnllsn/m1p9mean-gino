@@ -23,4 +23,9 @@ export class UserHomeComponent implements OnInit {
         }
     }
 
+    logOut(){
+        localStorage.clear();
+        this.router.navigate(['/'])
+    }
+
 }

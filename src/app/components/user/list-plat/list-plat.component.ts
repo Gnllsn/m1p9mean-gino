@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { MatDialog} from '@angular/material/dialog' ; 
+import { ConfirmCommandeComponent } from 'src/app/components/user/confirm-commande/confirm-commande.component';
 
 @Component({
     selector: 'app-list-plat',
@@ -17,6 +19,7 @@ export class ListPlatComponent implements OnInit {
     constructor(
         private tools : ToolsService,
         private api : ApiService,
+        private dialog : MatDialog,
         ){}
 
     ngOnInit(): void {
@@ -29,7 +32,6 @@ export class ListPlatComponent implements OnInit {
         const success = (response:any) => {
             if(response.status == 200){
                 this.plats = response.data ;
-                console.log(this.plats)
             } else {
                 console.log(response);
             }
@@ -74,6 +76,17 @@ export class ListPlatComponent implements OnInit {
         for(let restaut of this.restauts){
             this.restauts_for_join[restaut._id] = restaut;
         } 
+    }
+
+    confirm_command(plat:any){
+        const options = {
+            'paddin-bottom' : '20px',
+            width: '500px',
+            disableClose : true , 
+            data : plat
+        };
+
+        this.dialog.open(ConfirmCommandeComponent,options) ; 
     }
 
     get loading(){

@@ -31,7 +31,7 @@
 			<div style="padding: 8px 40px 1px 40px;text-align: center;">
 				<p> {{plat.nom}} - {{plat.type}} </p>
 				<p> {{restauts_for_join[plat.restaut].restaut}} - {{plat.prix}} Ar </p>
-				<p><button class="btn btn-green-e-kaly">Commander</button> </p>
+				<p><button class="btn btn-green-e-kaly" (click)="confirm_command(plat)">Commander</button> </p>
 			</div>
 		</div>
 	</div >

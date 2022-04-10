@@ -1,0 +1,36 @@
+<div style="position:relative;">
+	<div *ngIf="!save" style="text-align: end;margin-right: 50px;">
+		<i class="fa fa-window-close fa-2x" style="background: white;color: lightgray;cursor: pointer;" (click)="close()" ></i>
+	</div>
+	<div>
+		<div style="background: white;width:100%;margin: 0 auto;margin-top: 20px;padding-bottom: 10px;border-radius: 2px;padding-top: 5px;box-sizing: border-box;">
+			<div style="text-align:center">
+				<h1>Confirmation commande</h1>
+			</div>
+			<form [formGroup]="formulaire_Control" (ngSubmit)="Control_valeur()" novalidate>
+				<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;">
+					<label>Quantité</label>
+					<div class="col-6" style="margin-top: 10px;">
+						<input type="text" (keyup)="on_change_quantite()" [ngClass]="form_error.css.quantite" formControlName="quantite"  class="form-control"  placeholder="Entrez la quantité"  >
+						<small class="invalid-feedback" style="text-align:center" *ngIf="form_error.bool.quantite" >{{form_error.texte.quantite}}</small>            
+					</div>
+				</div>
+				<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;margin-top: 20px;">
+					<label>Lieu livraison</label>
+					<div class="col-6" style="margin-top: 10px;">
+						<input type="text" (keyup)="on_change_lieu()" [ngClass]="form_error.css.lieu" formControlName="lieu" class="form-control"  placeholder="Entrez le lieu de livraison"  >
+						<small class="invalid-feedback" style="text-align:center;" *ngIf="form_error.bool.lieu" >{{form_error.texte.lieu}}</small>            
+					</div>
+				</div>
+ 				<div style="display:flex;flex-direction: column;align-items: center;justify-content: center;margin-top: 20px;">
+					<button *ngIf="!save" class="btn btn-green-e-kaly" type="submit">Confirmer</button>
+					<div style="width: 100%;justify-content: center;display: flex;">
+						<div *ngIf="save" class="spinner-border green-e-kaly"  role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>		
+	</div>
+</div>

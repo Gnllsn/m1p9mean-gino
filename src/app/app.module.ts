@@ -20,6 +20,7 @@ import { MesPlatsComponent } from './components/restaurant/mes-plats/mes-plats.c
 import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes-commandes.component';
 import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
 import { ModifierPlatComponent } from './components/restaurant/modifier-plat/modifier-plat.component';
+import { ConfirmCommandeComponent } from './components/user/confirm-commande/confirm-commande.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { ModifierPlatComponent } from './components/restaurant/modifier-plat/mod
     MesPlatsComponent,
     MesCommandesComponent,
     AjoutPlatComponent,
-    ModifierPlatComponent
+    ModifierPlatComponent,
+    ConfirmCommandeComponent
     ],
     imports: [
     BrowserModule,
