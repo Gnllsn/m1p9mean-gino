@@ -53,5 +53,15 @@ export class ApiService {
         const options = this.tools.formOptionJSON(true);
         return this.http.delete(environment.base_url+"restaurant/plat/"+id,options);        
     }
+
+    getPlats_user(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"user",options);                
+    }
+
+    getRestauts(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"restaurant",options);                
+    }
 }
 

@@ -12,33 +12,32 @@
 			<mat-form-field appearance="fill">
 				<mat-label>Type plat</mat-label>
 				<mat-select>
-					<mat-option value="Riz">Riz</mat-option>
-					<mat-option value="Pâtes">Pâtes</mat-option>
-					<mat-option value="Desserts">Desserts</mat-option>
-					<mat-option value="Soupes">Soupes</mat-option>
+					<mat-option *ngFor="let type of types" value="{{type.type}}">{{type.type}}</mat-option>
 				</mat-select>
 			</mat-form-field>
 			<mat-form-field appearance="fill">
 				<mat-label>Restaurants</mat-label>
 				<mat-select>
-					<mat-option value="L'orion restaurant">L'orion restaurant</mat-option>
-					<mat-option value="La Jonquille">La Jonquille</mat-option>
-					<mat-option value="Le Carré">Le Carré</mat-option>
-					<mat-option value="Le Citizen">Le Citizen</mat-option>
+					<mat-option *ngFor="let restaut of restauts" value="{{restaut.restaut}}">{{restaut.restaut}}</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
 	</div>
-	<div class="list">
-		<div *ngFor="let ola of [1,2,3,1,2,3]" class="plat">
+	<div *ngIf="!loading" class="list">
+		<div *ngFor="let plat of plats" class="plat">
 			<div style="width:100%;text-align: center;">
 				<img src="/assets/sakafo.png"  style="text-align: center;">
 			</div>
 			<div style="padding: 8px 40px 1px 40px;text-align: center;">
-				<p>[name] - [type]</p>
-				<p> [restaut] - [prix] </p>
+				<p> {{plat.nom}} - {{plat.type}} </p>
+				<p> {{restauts_for_join[plat.restaut].restaut}} - {{plat.prix}} Ar </p>
 				<p><button class="btn btn-green-e-kaly">Commander</button> </p>
 			</div>
+		</div>
+	</div >
+	<div *ngIf="loading" style="width: 100%;justify-content: center;display: flex;">
+		<div class="spinner-border green-e-kaly"  role="status">
+			<span class="visually-hidden">Loading...</span>
 		</div>
 	</div>
 </div>
