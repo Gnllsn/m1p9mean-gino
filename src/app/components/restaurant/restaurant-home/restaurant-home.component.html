@@ -1,0 +1,17 @@
+<div class="header">
+	<div class="logo">
+		<img src="/assets/logo.png" width="75" height="75" style="border-radius:50%;border: 1px solid gray;">	
+		<span style="color: white;width: 30% ;display: flex;align-items: center;justify-content: center;font-size: 22px;">E-Kaly</span>
+	</div>
+	<div class="navigation">
+		<span >Mes plats </span>
+		<span >Listes commandes</span>
+		<span routerLink="/restaurant/ajout-plat">Ajouter plat</span>
+	</div>
+	<div class="deconnexion" (click)="logOut()">
+		Deconnexion
+	</div>
+</div>
+<div style="margin-top:-5px;padding:1px;">
+<router-outlet></router-outlet>
+</div>

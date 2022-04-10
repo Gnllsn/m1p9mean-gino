@@ -2,28 +2,44 @@
 	<div class="content">
 		<div class="logo">
 			<img src="/assets/logo.png" width="100" height="100" style="border-radius:50%;border: 1px solid gray;"></div>
-		<div style="text-align: center;margin-top: 10px;">
-			Bienvenu sur E-Kaly
-		</div>
-		<div class="formulaire">
-			<hr style="width:50%;margin: 0 auto;">
-			<div style="text-align:center;margin-bottom: 20px;margin-top: 20px;">
-				Connexion
+			<div style="text-align: center;margin-top: 10px;">
+				Bienvenu sur E-Kaly
 			</div>
-			<form class="form-group">
-				<div class="col-8 field">
-					<input type="text" class="form-control" placeholder="Entrez votre identifiant" >
+			<div class="formulaire">
+				<hr style="width:50%;margin: 0 auto;">
+				<div style="text-align:center;margin-bottom: 20px;margin-top: 20px;">
+					Connexion
 				</div>
-				<div class="col-8 field">
-					<input type="text" class="form-control" placeholder="Entrez votre mot de passe" >
-				</div>
-				<div class="col-8 field" >
-					<button class="btn btn-blue-e-kaly">Se connecter</button>
-				</div>
-				<div class="col-8 field" >
-					<span class="inscription" routerLink="/inscription">S'incrire ?</span>
-				</div>
-			</form>
+				<form class="form-group" [formGroup]="formulaire_Control" (ngSubmit)="Control_valeur()" novalidate>
+					<div class="col-8 field">
+						<input type="email" (keyup)="on_change_email()" [ngClass]="form_error.css.email" formControlName="email" class="form-control" placeholder="Entrez votre identifiant" >
+						<small class="invalid-feedback" *ngIf="form_error.bool.email" >{{form_error.texte.email}}</small>            
+					</div>
+					<div class="col-8 field" style="position: relative;">
+						<input type="{{input_password ? 'password' : 'texte'}}" (keyup)="on_change_password()" [ngClass]="form_error.css.password" formControlName="password" class="form-control" placeholder="Entrez votre mot de passe" >
+						<div style="position: absolute;top: 0;right: 30px;display: flex;align-items: center;height: 38px;" *ngIf="getPassword()">
+							<a  class="type-toggle vue" >
+								<i *ngIf="input_password" class="fa fa-eye" (click)="change_type()"></i>
+								<i *ngIf="!input_password" class="fa fa-eye-slash" (click)="change_type()"></i>
+							</a>                        
+						</div> 
+						<small class="invalid-feedback" *ngIf="form_error.bool.password" >{{form_error.texte.password}}</small> 
+					</div>
+					<div class="col-8 field" >
+						<button *ngIf="!loading" class="btn btn-blue-e-kaly" type="submit">Se connecter</button>
+						<div style="width: 100%;justify-content: center;display: flex;">
+							<div *ngIf="loading" class="spinner-border green-e-kaly"  role="status">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-8 field" >
+						<span class="inscription" routerLink="/inscription">S'incrire ?</span>
+					</div>
+					<div class="col-12 field" style="text-align:center;color: red;" >
+						<span class="inscription" *ngIf="error_server">{{error_server}}</span>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>

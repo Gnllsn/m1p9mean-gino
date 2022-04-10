@@ -7,6 +7,15 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { HomeComponent } from './components/user/home/home.component';
 import { ListPlatComponent } from './components/user/list-plat/list-plat.component';
 import { CartComponent } from './components/user/cart/cart.component';
+import { UserHomeComponent } from './components/user/user-home/user-home.component';
+
+import { RestaurantHomeComponent } from './components/restaurant/restaurant-home/restaurant-home.component';
+import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes-commandes.component';
+import { MesPlatsComponent } from './components/restaurant/mes-plats/mes-plats.component';
+import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
+
+import { LivreurHomeComponent } from './components/livreur/livreur-home/livreur-home.component';
+import { EKalyHomeComponent } from './components/e-kaly/e-kaly-home/e-kaly-home.component';
 
 const routes: Routes = [{
     path:'',
@@ -16,15 +25,41 @@ const routes: Routes = [{
     component:InscriptionComponent
 },{
     path:'user',
-    component:HomeComponent,
+    component:UserHomeComponent,
     children:[{
         path:'',
+        component:ListPlatComponent,
+    },{
+        path:'list-plat',
         component:ListPlatComponent,
     },{
         path:'cart',
         component:CartComponent
     }]
-}];
+},{
+    path:'restaurant',
+    component:RestaurantHomeComponent,
+    children:[{
+        path : '',
+        component : MesPlatsComponent
+    },{
+        path : 'mes-plats',
+        component : MesPlatsComponent
+    },{
+        path : 'mes-commandes',
+        component : MesCommandesComponent
+    },{
+        path : 'ajout-plat',
+        component : AjoutPlatComponent
+    }]
+},{
+    path:'livreur',
+    component:LivreurHomeComponent
+},{
+    path:'admin',
+    component:EKalyHomeComponent
+}
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

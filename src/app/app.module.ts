@@ -12,6 +12,13 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { HomeComponent } from './components/user/home/home.component';
 import { ListPlatComponent } from './components/user/list-plat/list-plat.component';
 import { CartComponent } from './components/user/cart/cart.component';
+import { UserHomeComponent } from './components/user/user-home/user-home.component';
+import { RestaurantHomeComponent } from './components/restaurant/restaurant-home/restaurant-home.component';
+import { LivreurHomeComponent } from './components/livreur/livreur-home/livreur-home.component';
+import { EKalyHomeComponent } from './components/e-kaly/e-kaly-home/e-kaly-home.component';
+import { MesPlatsComponent } from './components/restaurant/mes-plats/mes-plats.component';
+import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes-commandes.component';
+import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +27,14 @@ import { CartComponent } from './components/user/cart/cart.component';
     InscriptionComponent,
     HomeComponent,
     ListPlatComponent,
-    CartComponent
+    CartComponent,
+    UserHomeComponent,
+    RestaurantHomeComponent,
+    LivreurHomeComponent,
+    EKalyHomeComponent,
+    MesPlatsComponent,
+    MesCommandesComponent,
+    AjoutPlatComponent
     ],
     imports: [
     BrowserModule,

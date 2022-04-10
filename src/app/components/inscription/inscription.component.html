@@ -9,23 +9,63 @@
 			<div style="text-align:center;margin-bottom: 20px;margin-top: 20px;">
 				Inscription
 			</div>
-			<form class="form-group">
+			<form *ngIf="!loading.data" class="form-group" [formGroup]="formulaire_Control" (ngSubmit)="Control_valeur()" novalidate>
 				<div class="col-8 field">
-					<input type="text" class="form-control" placeholder="Entrez votre nom" >
+					<div class="e-kaly-input">
+						<div class="mat_select_" [ngClass]="form_error.css.role" >
+							<mat-select (selectionChange)="on_change_role()" formControlName="role" placeholder="Votre profil">
+								<mat-option style="text-align: center;" *ngFor="let role of roles" value="{{role.nom}}">{{role.nom}}</mat-option>
+							</mat-select>
+						</div>
+						<mat-error *ngIf="form_error.bool.role">{{form_error.texte.role}}</mat-error>
+					</div>
 				</div>
 				<div class="col-8 field">
-					<input type="text" class="form-control" placeholder="Entrez votre identifiant" >
+					<input type="text" (keyup)="on_change_nom()" [ngClass]="form_error.css.nom" class="form-control" formControlName="nom" placeholder="Entrez votre nom" >
+					<small class="invalid-feedback" *ngIf="form_error.bool.nom" >{{form_error.texte.nom}}</small>            
 				</div>
 				<div class="col-8 field">
-					<input type="text" class="form-control" placeholder="Entrez votre mot de passe" >
+					<input type="text" (keyup)="on_change_email()" [ngClass]="form_error.css.email" class="form-control" formControlName="email" placeholder="Entrez votre email" >
+					<small class="invalid-feedback" *ngIf="form_error.bool.email" >{{form_error.texte.email}}</small>            
+				</div>
+				<div class="col-8 field" style="position: relative;">
+					<input type="{{input_password ? 'password' : 'texte'}}" (keyup)="on_change_password()" [ngClass]="form_error.css.password" class="form-control" formControlName="password" placeholder="Entrez votre mot de passe" >
+					<div style="position: absolute;top: 0;right: 30px;display: flex;align-items: center;height: 38px;" *ngIf="getPassword()">
+						<a  class="type-toggle vue" >
+							<i *ngIf="input_password" class="fa fa-eye" (click)="change_type()"></i>
+							<i *ngIf="!input_password" class="fa fa-eye-slash" (click)="change_type()"></i>
+						</a>                        
+					</div> 
+					<small class="invalid-feedback" *ngIf="form_error.bool.password" >{{form_error.texte.password}}</small>            
+				</div>
+				<div class="col-8 field" *ngIf="getRole() === 'restaurant'">
+					<input type="text" (keyup)="on_change_restaut()" [ngClass]="form_error.css.restaut" class="form-control" formControlName="restaut" placeholder="Nom restaurant" >
+					<small class="invalid-feedback" *ngIf="form_error.bool.restaut" >{{form_error.texte.restaut}}</small>            
+				</div>
+				<div class="col-8 field" *ngIf="getRole() === 'restaurant'">
+					<input type="text" (keyup)="on_change_local()" [ngClass]="form_error.css.local" class="form-control" formControlName="local" placeholder="Localisation" >
+					<small class="invalid-feedback" *ngIf="form_error.bool.local" >{{form_error.texte.local}}</small>            
 				</div>
 				<div class="col-8 field" >
-					<button class="btn btn-green-e-kaly">S'inscrire</button>
+					<button class="btn btn-green-e-kaly" type="submit" *ngIf="!loading.save">S'inscrire</button>
+				</div>
+				<div style="width: 100%;justify-content: center;display: flex;">
+					<div *ngIf="loading.save" class="spinner-border green-e-kaly"  role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
 				</div>
 				<div class="col-8 field" >
 					<span class="inscription" routerLink="/">Se connecter ?</span>
 				</div>
+				<div class="col-12" style="text-align:center;color: red;" >
+					<span class="inscription" *ngIf="error_server">{{error_server}}</span>
+				</div>
 			</form>
+			<div style="width: 100%;justify-content: center;display: flex;">
+				<div *ngIf="loading.data" class="spinner-border green-e-kaly"  role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
