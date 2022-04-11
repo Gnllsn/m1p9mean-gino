@@ -1,0 +1,32 @@
+{
+  "name": "m1p9mean-server-gino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gnllsn/m1p9mean-gino.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gnllsn/m1p9mean-gino/issues"
+  },
+  "homepage": "https://github.com/Gnllsn/m1p9mean-gino#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
+}
