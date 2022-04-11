@@ -15,6 +15,7 @@ import { MesCommandesComponent } from './components/restaurant/mes-commandes/mes
 import { MesPlatsComponent } from './components/restaurant/mes-plats/mes-plats.component';
 import { AjoutPlatComponent } from './components/restaurant/ajout-plat/ajout-plat.component';
 import { ModifierPlatComponent } from './components/restaurant/modifier-plat/modifier-plat.component';
+import { ListCommandeComponent } from './components/restaurant/list-commande/list-commande.component';
 
 import { LivreurHomeComponent } from './components/livreur/livreur-home/livreur-home.component';
 import { EKalyHomeComponent } from './components/e-kaly/e-kaly-home/e-kaly-home.component';
@@ -59,6 +60,9 @@ const routes: Routes = [{
     },{
         path : 'modifier-plat/:id',
         component : ModifierPlatComponent
+    },{
+        path : 'list-commande',
+        component : ListCommandeComponent
     }]
 },{
     path:'livreur',

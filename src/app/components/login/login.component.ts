@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/restaurant']);
                 }else if(data_store.user.role.nom === 'livreur'){
                     this.router.navigate(['/livreur']);
-                }else if(data_store.user.role.nom === 'admin'){
+                }else if(data_store.user.role.nom === 'Admin'){
                     this.router.navigate(['/admin']);
                 }
             } else if(response.status == 400) {
