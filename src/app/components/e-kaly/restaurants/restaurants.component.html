@@ -6,6 +6,7 @@
 				<th>Localisation</th>
 				<th>Gerant</th>
 				<th>Contact</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -14,6 +15,7 @@
 				<td>{{restaut.local}}</td>
 				<td>{{restaut.nom}}</td>
 				<td>{{restaut.email}}</td>
+				<td><button class="btn btn-green-e-kaly" routerLink="/admin/commande-restauts/{{restaut._id}}">Voir commandes</button></td>
 			</tr>
 		</tbody>
 	</table>

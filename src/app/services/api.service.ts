@@ -84,6 +84,11 @@ export class ApiService {
         return this.http.get(environment.base_url+"restaurant/mes-commandes",options);                           
     }
 
+    getCommandes_restaurant_by_id(id:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"admin/commandes/"+id,options);                                   
+    }
+
     getCommandes_admin(){
         const options = this.tools.formOptionJSON(true);
         return this.http.get(environment.base_url+"admin/commandes",options);                           
@@ -107,6 +112,11 @@ export class ApiService {
     getLivraison_livreur(){
         const options = this.tools.formOptionJSON(true);
         return this.http.get(environment.base_url+"livreur/mes-livraisons",options);                                   
+    }
+
+    getLivraison_livreur_by_id(id:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"admin/livraisons/"+id,options);                                   
     }
 
     en_livraison(livraison:any){

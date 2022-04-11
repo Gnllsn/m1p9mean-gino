@@ -27,6 +27,8 @@ import { CommandesComponent } from './components/e-kaly/commandes/commandes.comp
 import { RestaurantsComponent } from './components/e-kaly/restaurants/restaurants.component';
 import { LivreursComponent } from './components/e-kaly/livreurs/livreurs.component';
 import { HistoriquesComponent } from './components/e-kaly/historiques/historiques.component';
+import { CommandeAsignerComponent } from './components/e-kaly/commande-asigner/commande-asigner.component';
+import { CommandeRestautsComponent } from './components/e-kaly/commande-restauts/commande-restauts.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import { HistoriquesComponent } from './components/e-kaly/historiques/historique
     CommandesComponent,
     RestaurantsComponent,
     LivreursComponent,
-    HistoriquesComponent
+    HistoriquesComponent,
+    CommandeAsignerComponent,
+    CommandeRestautsComponent
     ],
     imports: [
     BrowserModule,

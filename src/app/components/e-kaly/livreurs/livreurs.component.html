@@ -4,12 +4,14 @@
 			<tr>
 				<th>Nom</th>
 				<th>Contact</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let livreur of livreurs">
 				<td>{{livreur.nom}}</td>
 				<td>{{livreur.email}}</td>
+				<td><button routerLink="/admin/commande-asigner/{{livreur._id}}" class="btn btn-green-e-kaly">Voir commande asigner</button></td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,6 +1,15 @@
 <div style="position:relative">	
 	<router-outlet></router-outlet>
-	<div style="text-align: end;background:#1b2e3b;color:white;height: 40px;position: fixed;bottom: 0;left:0 ;width: 100%;padding-right: 20px;">
-		<p>Rasoanaivo Gino Allison ETU-1036 P12-B-73</p> 
+	<div style="text-align: end;background:#1b2e3b;color:white;height: 40px;position: fixed;bottom: 0;left:0 ;width: 100%;display:flex ;justify-content: space-between; padding: 0 20px;">
+		<div>
+			[{{user.role.nom}}] : {{user.user.nom}} 
+		</div>
+		<div>
+			<p>
+				Rasoanaivo Gino Allison ETU-1036 P12-B-73 <br>
+				admin@admin.com -- test
+			</p> 
+			
+		</div>
 	</div>
 </div>
