@@ -3,9 +3,14 @@ const JWT = require('jsonwebtoken');
 const Livraison = require('../models/Livraison');
 const ObjectId =  require('mongoose').Types.ObjectId;
 const Commande = require('../models/Commande');
+const Livreur = require('../models/Livreur');
 
-function getLivreur(request,response){
-	response.send('get livreur')
+async function getLivreur(request,response){
+	const livreurs =  await Livreur.find({});
+	response.send({
+		status : 200 ,
+		data : livreurs 
+	})
 }
 
 async function mes_livraisons(request,response){
@@ -31,10 +36,10 @@ async function en_livraisons(request,response){
 	});
 
 	update = await Commande.updateOne({
-		'._id' : livraison.commande._id 
+		'_id' : livraison.commande._id 
 	},{
 		status : "en cours Livraison"
- 	})
+	})
 	response.send({
 		status : 200
 	})

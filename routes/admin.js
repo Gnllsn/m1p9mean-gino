@@ -92,6 +92,16 @@ async function asigner_livreur(request,response){
 	}
 }
 
+async function getHistory(request,response){
+	const commandes = await Commande.find({
+		status : 'Livrer et payer'
+	})
+	response.send({
+		status : 200,
+		data : commandes
+	})
+}
+
 function verify_token(request,response,next){
 	const token = request.headers.authorization;
 	if(!token) return response.send({
@@ -119,6 +129,7 @@ async function livreur_misy_livraison(){
 routerAdmin.get('/',verify_token,getAdmin);
 routerAdmin.get('/commandes',verify_token,getCommandes);
 routerAdmin.post('/asigner',verify_token,asigner_livreur);
+routerAdmin.get('/history',verify_token,getHistory);
 
 
 
