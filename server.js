@@ -4,6 +4,7 @@ const http = require('http') ;
 const mongoose = require('mongoose'); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const io = require('socket.io');
 
 const routerCommandes = require('./routes/commande');
 const routerLivreurs = require('./routes/livreur');
@@ -38,8 +39,8 @@ async function root(request,response){
 function start(){
 	mongoose.connect(
 		process.env.BD_CONNECTION, 
-		()=>{
-			console.log("Server start!")
+		(socket)=>{
+			console.log("Server start! " +socket)
 			init_server();
 		}
 	)	
