@@ -37,6 +37,7 @@ export class LivreurHomeComponent implements OnInit {
                 this.getLivraison_livreur();
             }
         }
+        console.log(this.tools.get("user"))
     }
 
     getLivraison_livreur(){
@@ -73,6 +74,7 @@ export class LivreurHomeComponent implements OnInit {
             console.log (response) ; 
         }
         this.loading.save[livraison._id] = true ;
+        console.log (livraison)
         this.api.en_livraison(livraison).subscribe(success,error);   
     }
 
