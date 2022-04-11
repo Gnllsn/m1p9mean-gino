@@ -1,8 +1,9 @@
 const routerUser = require('express').Router() ; 
+const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Plat = require('../models/Plat');
 const Commande = require('../models/Commande');
-const JWT = require('jsonwebtoken');
+const Livraison = require('../models/Livraison');
 
 async function getPlats(request,response){
 	const plats = await Plat.find({});
@@ -39,6 +40,25 @@ async function getCommandes(request,response){
 	})
 }
 
+async function livrer(request,response){
+	const commande = request.body ;
+
+	let update = await Commande.updateOne({
+		_id : commande._id
+	},{
+		status : "Livrer et payer"
+	})
+
+	update = await Livraison.updateOne({
+		'commande._id' : commande._id
+	},{
+		status : "Livrer et payer"
+	})
+	response.send({
+		status : 200 
+	})
+}
+
 
 
 function verify_token(request,response,next){
@@ -64,5 +84,6 @@ routerUser.get('/',verify_token,getPlats);
 routerUser.get('/commande',verify_token,getCommandes);
 
 routerUser.post('/commande',verify_token,ajoutCommande);
+routerUser.post('/livrer',verify_token,livrer);
 
 module.exports = routerUser 
