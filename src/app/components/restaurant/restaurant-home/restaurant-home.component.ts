@@ -9,6 +9,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 })
 export class RestaurantHomeComponent implements OnInit {
 
+        user: any;
     constructor(
         private router: Router,
         private tools: ToolsService
@@ -20,6 +21,10 @@ export class RestaurantHomeComponent implements OnInit {
         }else{
             const data = this.tools.get("user");
             if(data?.user?.role?.nom != "restaurant")this.router.navigate(['/'])
+                else{
+
+                    this.user = this.tools.get("user").user
+                }
         }
     }
 

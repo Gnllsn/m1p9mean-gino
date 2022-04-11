@@ -9,6 +9,8 @@ import { ToolsService } from 'src/app/services/tools.service';
 })
 export class EKalyHomeComponent implements OnInit {
 
+    user : any ; 
+
     constructor(private router: Router,private tools: ToolsService){}
 
     ngOnInit(): void {
@@ -18,6 +20,8 @@ export class EKalyHomeComponent implements OnInit {
             const data = this.tools.get("user");
             if(data?.user?.role?.nom != "Admin"){
                 this.router.navigate(['/'])
+            }else {
+                this.user = this.tools.get("user").user
             }
         }
     }

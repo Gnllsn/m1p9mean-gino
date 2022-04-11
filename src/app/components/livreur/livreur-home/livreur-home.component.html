@@ -3,6 +3,9 @@
 		<img src="/assets/logo.png" width="75" height="75" style="border-radius:50%;border: 1px solid gray;">	
 		<span style="color: white;width: 30% ;display: flex;align-items: center;justify-content: center;font-size: 22px;">E-Kaly</span>
 	</div>
+	<div class="navigation">
+		<span >[{{user.role.nom}}] : {{user.user.nom}} </span>
+	</div>
 	<div class="deconnexion" (click)="logOut()">
 		Deconnexion
 	</div>

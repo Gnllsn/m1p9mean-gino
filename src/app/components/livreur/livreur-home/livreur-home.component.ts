@@ -16,6 +16,9 @@ export class LivreurHomeComponent implements OnInit {
         save : {}
     }
 
+            user: any;
+
+
     status : any = {
         "en attente" : "en cours Livraison"
     }
@@ -35,9 +38,10 @@ export class LivreurHomeComponent implements OnInit {
                 this.router.navigate(['/'])
             }else{
                 this.getLivraison_livreur();
+                                    this.user = this.tools.get("user").user
+
             }
         }
-        console.log(this.tools.get("user"))
     }
 
     getLivraison_livreur(){

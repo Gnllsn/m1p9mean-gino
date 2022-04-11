@@ -7,9 +7,10 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent  {
-  user = this.tools.get("user").user;
 
   constructor(private tools : ToolsService){
-    console.log(this.user)
+  }
+
+  ngOnInit(){
   }
 }
