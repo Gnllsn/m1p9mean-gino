@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const io = require('socket.io');
 
+const port = process.env.PORT || 3000
+
 const routerCommandes = require('./routes/commande');
 const routerLivreurs = require('./routes/livreur');
 const routerRestaurants = require('./routes/restaurant');
@@ -28,7 +30,7 @@ function init_server(){
 	server.use('/admin',routerAdmin);   
 
 	server.get('/',root);
-	server.listen(3000)
+	server.listen(port)
 }
 
 async function root(request,response){
