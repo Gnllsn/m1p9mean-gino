@@ -39,8 +39,8 @@ async function root(request,response){
 function start(){
 	mongoose.connect(
 		process.env.BD_CONNECTION, 
-		(socket)=>{
-			console.log("Server start! " +socket)
+		()=>{
+			console.log("Server start! ")
 			init_server();
 		}
 	)	
