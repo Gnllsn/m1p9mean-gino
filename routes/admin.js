@@ -12,7 +12,9 @@ async function getAdmin(request,response){
 }
 
 async function getCommandes(request,response){
-	const commandes = await Commande.find({});
+	const commandes = await Commande.find({
+		status : { $nin : ['Livrer et payer'] }
+	});
 	return response.send({
 		status : 200 ,
 		data : commandes
@@ -30,7 +32,7 @@ async function getLivreurs(request,response){
 async function asigner_livreur(request,response){
 	// get livreur efa anaty collection livraison
 	const livreurs_misy_livraison = await livreur_misy_livraison();
-
+	const livreur_rehetra = await Livreur.find({});
 	// get livreur mbola tsy ao 
 	let livreur_libre = await Livreur.find({
 		'_id' :  { $nin: livreurs_misy_livraison } 
@@ -41,8 +43,8 @@ async function asigner_livreur(request,response){
 		livreur_libre = livreur_libre[0]
 	}else{
 	// raha tsy misy dia jerena izay nahazo livraison taloha indrindra  
-	livreur_libre = await Livraison.find({}).sort({'date' : 1}).limit(1);
-	livreur_libre = livreur_libre[0].livreur ;
+	livreur_libre = await Livraison.find({}).sort({'date' : -1}).limit(livreur_rehetra.length);
+	livreur_libre = livreur_libre.slice(-1)[0].livreur ;
 }
 
 	// creer livraison
@@ -102,6 +104,26 @@ async function getHistory(request,response){
 	})
 }
 
+async function getLivraison_livreur(request,response){
+	const livraisons = await Livraison.find({
+		'livreur._id' : ObjectId(request.params.id)
+	})
+	response.send({
+		status : 200 ,
+		data : livraisons
+	})	
+}
+
+async function getLivraison_restaurant(request,response){
+	const commandes =  await Commande.find({
+		'plat.restaut._id' : request.params.id 
+	})
+	response.send({
+		status : 200 ,
+		data : commandes
+	})	
+}
+
 function verify_token(request,response,next){
 	const token = request.headers.authorization;
 	if(!token) return response.send({
@@ -128,9 +150,11 @@ async function livreur_misy_livraison(){
 
 routerAdmin.get('/',verify_token,getAdmin);
 routerAdmin.get('/commandes',verify_token,getCommandes);
-routerAdmin.post('/asigner',verify_token,asigner_livreur);
 routerAdmin.get('/history',verify_token,getHistory);
+routerAdmin.get('/livraisons/:id',verify_token,getLivraison_livreur);
+routerAdmin.get('/commandes/:id',verify_token,getLivraison_restaurant);
 
+routerAdmin.post('/asigner',verify_token,asigner_livreur);
 
 
 module.exports = routerAdmin
