@@ -52,20 +52,18 @@ export class ListCommandeComponent implements OnInit {
     }
 
     pret(commande:any){
-        if(status[commande.status]){
-            const success = (response:any) =>{
-                if(response.status == 200){
-                    window.location.reload();
-                }else{
-                    console.log (response)
-                }
-            }
-            const error = (response:any)=>{
+        const success = (response:any) =>{
+            if(response.status == 200){
+                window.location.reload();
+            }else{
                 console.log (response)
             }
-            this.loading.pret[commande.id] = true ;
-            this.api.pret(commande.id).subscribe(success,error)
         }
+        const error = (response:any)=>{
+            console.log (response)
+        }
+        this.loading.pret[commande._id] = true ;
+        this.api.pret(commande._id).subscribe(success,error)
     }
 
 }
