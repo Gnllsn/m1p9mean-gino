@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const Plat = require('./Plat');
-const User = require('./User');
 
 const Commande = mongoose.Schema({
 	client : String,

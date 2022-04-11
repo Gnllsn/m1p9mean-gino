@@ -1,6 +1,7 @@
 const routerRestaurant = require('express').Router() ; 
 const Plat = require('../models/Plat');
 const Restaurant = require('../models/Restaurant');
+const Commande = require('../models/Commande');
 const JWT = require('jsonwebtoken');
 const ObjectId =  require('mongoose').Types.ObjectId;
 
@@ -136,6 +137,17 @@ async function supprimerPlat(request,response){
 	})
 } 
 
+async function getCommandes_restaurant(request,response){
+	const _id = JWT.decode(request.headers.authorization)._id+"" ; 
+	const commandes = await Commande.find({
+		'plat.restaut' :  _id 
+	})
+	response.send({
+		status : 200,
+		data : commandes
+	})
+}
+
 function verify_token(request,response,next){
 	const token = request.headers.authorization;
 	if(!token) return response.send({
@@ -158,6 +170,8 @@ function verify_token(request,response,next){
 routerRestaurant.get('/',getRestaurant);
 routerRestaurant.get('/mes-plats',verify_token,getMesPlats);
 routerRestaurant.get('/plat/:id',verify_token,getPlats);
+
+routerRestaurant.get('/mes-commandes',verify_token,getCommandes_restaurant);
 
 routerRestaurant.post('/ajout-plat',verify_token,Ajout_Plat);
 

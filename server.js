@@ -12,6 +12,7 @@ const routerAuthentification = require('./routes/authentification');
 const routerRole = require('./routes/role');
 const routerType = require('./routes/types');
 const routerUser = require('./routes/user');
+const routerAdmin = require('./routes/admin');
 
 
 function init_server(){
@@ -24,7 +25,7 @@ function init_server(){
 	server.use('/role',routerRole);   
 	server.use('/type',routerType);   
 	server.use('/user',routerUser);   
-
+	server.use('/admin',routerAdmin);   
 
 	server.get('/',root);
 	server.listen(3000)
