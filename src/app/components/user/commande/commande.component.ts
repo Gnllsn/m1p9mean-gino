@@ -8,10 +8,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CommandeComponent implements OnInit {
 
+    save : any = {
+        data : {}
+    }
+
     commandes : any ;
 
     status : any = {
-        'en cours livraison' : 'Livrer et payer'
+        'en cours Livraison' : 'Livrer et payer'
     }
 
     constructor(private api : ApiService) { }
@@ -24,6 +28,7 @@ export class CommandeComponent implements OnInit {
         const success = (response:any) => {
             if(response.status == 200){
                 this.commandes = response.data ;
+                this.init_save_data();
             } else {
                 console.log(response);
             }
@@ -32,7 +37,30 @@ export class CommandeComponent implements OnInit {
             console.log (response) ; 
         }
         this.api.getCommandes_user().subscribe(success,error); 
-    }    
+    }  
+
+    init_save_data(){
+        for(let commande of this.commandes){
+            this.save.data[commande._id] = false ; 
+        }
+    }  
+
+    livrer_payer(commande:any){
+        if(!status[commande.status]){
+            const success = (response:any) => {
+                if(response.status == 200){
+                    window.location.reload()
+                } else {
+                    console.log(response);
+                }
+            }
+            const error = (response:any) => {
+                console.log (response) ; 
+            }
+            this.save.data[commande._id] = true ; 
+            this.api.livrer_payer(commande).subscribe(success,error); 
+        }
+    }
 
     get loading(){
         return !this.commandes

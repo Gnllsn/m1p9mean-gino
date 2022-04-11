@@ -14,22 +14,30 @@
 </div>
 <div style="margin-top:-5px;padding:1px;">
 	<div class="content">
-		<!-- <div *ngIf="!loading" class="list">
-			<div *ngFor="let plat of plats" class="plat">
+		<div *ngIf="!loading.data" class="list">
+			<div *ngFor="let livraison of livraisons" class="plat">
 				<div style="width:100%;text-align: center;">
 					<img src="/assets/sakafo.png"  style="text-align: center;">
 				</div>
 				<div style="padding: 8px 40px 1px 40px;text-align: center;">
-					<p> {{plat.nom}} - {{plat.type}} </p>
-					<p> {{plat.restaut.nom}} - {{plat.prix}} Ar </p>
-					<p><button class="btn btn-green-e-kaly" (click)="confirm_command(plat)">Commander</button> </p>
+					<p> [{{livraison.commande.quantite}}] {{livraison.commande.plat.nom}}</p>
+					<p> de Chez {{livraison.commande.plat.restaut.nom}} </p>
+					<p>  livré à {{livraison.commande.lieu}}</p>
+					<p>  Total : {{(livraison.commande.quantite*livraison.commande.plat.prix)}} Ar </p>
+					<p style="color:lightgray;">{{livraison.status}} </p>
+					<p *ngIf="status[livraison.status] && !loading.save[livraison._id]"><button class="btn btn-green-e-kaly" (click)="en_livraison(livraison)">{{status[livraison.status]}}</button> </p>
+					<div *ngIf="loading.save[livraison._id]" style="width: 100%;justify-content: center;display: flex;">
+						<div class="spinner-border green-e-kaly"  role="status">
+							<span class="visually-hidden">Loading...</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div >
-		<div *ngIf="loading" style="width: 100%;justify-content: center;display: flex;">
+		<div *ngIf="loading.data" style="width: 100%;justify-content: center;display: flex;">
 			<div class="spinner-border green-e-kaly"  role="status">
 				<span class="visually-hidden">Loading...</span>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </div>

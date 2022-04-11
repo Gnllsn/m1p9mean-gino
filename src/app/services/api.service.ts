@@ -99,5 +99,20 @@ export class ApiService {
         return this.http.post(environment.base_url+"admin/asigner",commande,options);                                   
     }
 
+    getLivraison_livreur(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"livreur/mes-livraisons",options);                                   
+    }
+
+    en_livraison(livraison:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.post(environment.base_url+"livreur/en-livraison",livraison,options);                                           
+    }
+
+    livrer_payer(commande:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.post(environment.base_url+"user/livrer",commande,options);                                                   
+    }
+
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
     selector: 'app-livreur-home',
@@ -9,10 +10,19 @@ import { ToolsService } from 'src/app/services/tools.service';
 })
 export class LivreurHomeComponent implements OnInit {
 
-    
+    livraisons : any ;
+    loading : any = {
+        data : true,
+        save : {}
+    }
+
+    status : any = {
+        "en attente" : "en cours Livraison"
+    }
 
     constructor(
         private router: Router,
+        private api : ApiService,
         private tools: ToolsService
         ){}
 
@@ -24,24 +34,46 @@ export class LivreurHomeComponent implements OnInit {
             if(data?.user?.role?.nom != "livreur"){
                 this.router.navigate(['/'])
             }else{
-                this.getLivreur();
+                this.getLivraison_livreur();
             }
-
         }
     }
 
-    getLivreur(){
-        // const success = (response:any) => {
-        //     if(response.status == 200){
-        //         this.plats = response.data ;
-        //     } else {
-        //         console.log(response);
-        //     }
-        // }
-        // const error = (response:any) => {
-        //     console.log (response) ; 
-        // }
-        // this.api.getPlats_user().subscribe(success,error); 
+    getLivraison_livreur(){
+        const success = (response:any) => {
+            if(response.status == 200){
+                this.livraisons = response.data ;
+                this.init_en_livraison()
+                this.loading.data = false ; 
+            } else {
+                console.log(response);
+            }
+        }
+        const error = (response:any) => {
+            console.log (response) ; 
+        }
+        this.api.getLivraison_livreur().subscribe(success,error); 
+    }
+
+    init_en_livraison(){
+        for(let livraison of this.livraisons){
+            this.loading.save[livraison._id] = false
+        }
+    }
+
+    en_livraison(livraison:any){
+        const success = (response:any) => {
+            if(response.status == 200){
+                window.location.reload()
+            } else {
+                console.log(response);
+            }
+        }
+        const error = (response:any) => {
+            console.log (response) ; 
+        }
+        this.loading.save[livraison._id] = true ;
+        this.api.en_livraison(livraison).subscribe(success,error);   
     }
 
     logOut(){
