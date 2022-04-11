@@ -10,5 +10,6 @@ export class AppComponent  {
   user = this.tools.get("user").user;
 
   constructor(private tools : ToolsService){
+    console.log(this.user)
   }
 }
