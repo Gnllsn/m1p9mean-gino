@@ -4,7 +4,7 @@ const Type = require('./Type');
 
 const Plat = mongoose.Schema({
 	nom : String,
-	restaut : String,
+	restaut : {},
 	type : String,
 	prix : Number
 }) 

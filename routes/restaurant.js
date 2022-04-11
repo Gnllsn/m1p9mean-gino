@@ -38,7 +38,7 @@ async function Ajout_Plat(request,response){
 async function getMesPlats(request,response){
 	const _id = JWT.decode(request.headers.authorization)._id+"" ; 
 	const mes_plats = await Plat.find({
-		restaut : _id
+		'restaut._id' : _id
 	})
 	return response.send({
 		status : 200,
@@ -140,12 +140,40 @@ async function supprimerPlat(request,response){
 async function getCommandes_restaurant(request,response){
 	const _id = JWT.decode(request.headers.authorization)._id+"" ; 
 	const commandes = await Commande.find({
-		'plat.restaut' :  _id 
+		'plat.restaut._id' :  _id 
 	})
 	response.send({
 		status : 200,
 		data : commandes
 	})
+}
+
+async function commandes_pret(request,response){
+	let _id = request.params.id ; 
+	try{
+		_id = ObjectId(_id);
+	}catch(err){
+		return response.send({
+			status : 200,
+			message : "Identifiant plat incorrect"
+		})
+	}
+	const update_pret = await Commande.updateOne({_id : _id},{
+		status : "Prêt"
+	})
+	if(update_pret.modifiedCount==1 && update_pret.matchedCount==1){
+		response.send({
+			status : 200
+		})
+	}else{
+		response.send({
+			status : 400,
+			data : {
+				modifiedCount : update_pret.modifiedCount,
+				matchedCount : update_pret.matchedCount
+			}
+		})
+	}
 }
 
 function verify_token(request,response,next){
@@ -174,6 +202,7 @@ routerRestaurant.get('/plat/:id',verify_token,getPlats);
 routerRestaurant.get('/mes-commandes',verify_token,getCommandes_restaurant);
 
 routerRestaurant.post('/ajout-plat',verify_token,Ajout_Plat);
+routerRestaurant.post('/pret/:id',verify_token,commandes_pret);
 
 routerRestaurant.put('/plat/:id',verify_token,modifierPlat);
 

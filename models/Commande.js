@@ -10,8 +10,8 @@ const Commande = mongoose.Schema({
 	lieu : String,
 	status : {
 		type : String,
-		default : "en cours preparation"
-	},
+		default : "en cours de preparation"
+	}
 }) 
 
 module.exports = mongoose.model('Commande',Commande)

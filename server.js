@@ -14,7 +14,6 @@ const routerType = require('./routes/types');
 const routerUser = require('./routes/user');
 const routerAdmin = require('./routes/admin');
 
-
 function init_server(){
 	server.use(cors())
 	server.use(bodyParser.json())
@@ -31,8 +30,8 @@ function init_server(){
 	server.listen(3000)
 }
 
-function root(request,response){
-	response.send("We are on home");
+async function root(request,response){
+	response.send("Welcom server node")
 }
 
 
