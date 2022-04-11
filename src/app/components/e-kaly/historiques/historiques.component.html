@@ -1,1 +1,26 @@
-<p>historiques works!</p>
+<div class="content">
+	<div *ngIf="commandes" >
+
+		<div>
+			<h3>Total ventes : {{total}} Ar </h3>		
+		</div>
+		<div class="list">
+			<div *ngFor="let commande of commandes" class="plat">
+				<div style="width:100%;text-align: center;">
+					<img src="/assets/sakafo.png"  style="text-align: center;">
+				</div>
+				<div style="padding: 8px 40px 1px 40px;text-align: center;">
+					<p> [{{commande.quantite}}]{{commande.plat.nom}} - {{commande.plat.type}} </p>
+					<p>  livré à {{commande.lieu}}</p>
+					<p>  Total : {{(commande.quantite*commande.plat.prix)}} Ar </p>
+					<p style="color: lightgray;">{{commande.status}}</p>
+				</div>
+			</div>
+		</div>
+	</div >
+	<div *ngIf="!commandes" style="width: 100%;justify-content: center;display: flex;margin-top: 20px;">
+		<div class="spinner-border green-e-kaly"  role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+</div>

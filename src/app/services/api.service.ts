@@ -64,6 +64,11 @@ export class ApiService {
         return this.http.get(environment.base_url+"restaurant",options);                
     }
 
+    getLivreurs(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"livreur",options);                
+    }
+
     save_command(data:any){
         const options = this.tools.formOptionJSON(true);
         return this.http.post(environment.base_url+"user/commande",data,options);                
@@ -112,6 +117,11 @@ export class ApiService {
     livrer_payer(commande:any){
         const options = this.tools.formOptionJSON(true);
         return this.http.post(environment.base_url+"user/livrer",commande,options);                                                   
+    }
+
+    getHistory(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"admin/history",options);                                                           
     }
 
 }

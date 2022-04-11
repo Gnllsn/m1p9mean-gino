@@ -1,3 +1,25 @@
-<div>
-	
+<div style="width:60%;margin: 0 auto;margin-top: 20px;">
+	<table *ngIf="restauts" class="table" style="text-align:center">
+		<thead>
+			<tr>
+				<th>Restaurant</th>
+				<th>Localisation</th>
+				<th>Gerant</th>
+				<th>Contact</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let restaut of restauts">
+				<td>{{restaut.restaut}}</td>
+				<td>{{restaut.local}}</td>
+				<td>{{restaut.nom}}</td>
+				<td>{{restaut.email}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div *ngIf="!restauts" style="width: 100%;justify-content: center;display: flex;">
+		<div class="spinner-border green-e-kaly"  role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
 </div>
