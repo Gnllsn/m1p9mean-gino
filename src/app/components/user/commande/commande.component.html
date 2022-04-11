@@ -9,12 +9,12 @@
 			</div>
 			<div style="padding: 8px 40px 1px 40px;text-align: center;">
 				<p> [{{commande.quantite}}] {{commande.plat.nom}} </p>
-				<p> de Chez {{restauts[commande.plat.restaut].restaut}} livrer à {{commande.lieu}}  </p>
+				<p> de Chez {{commande.plat.restaut.nom}} livrer à {{commande.lieu}}  </p>
 				<p> Total : {{(commande.plat.prix*commande.quantite)}} Ar  </p>
 				<p style="color: lightgray;"> {{commande.status}}  </p>
 			</div>
-			<div style="text-align:center">
-				<button class="btn btn-green-e-kaly"> Reçu</button>
+			<div style="text-align:center" *ngIf="status[commande.status]">
+				<button class="btn btn-green-e-kaly" >{{status}}</button>
 			</div>
 		</div>
 	</div>

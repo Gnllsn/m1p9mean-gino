@@ -60,7 +60,6 @@ export class ListPlatComponent implements OnInit {
         const success = (response:any) => {
             if(response.status == 200){
                 this.restauts = response.data ;
-                this.Join_Restaut();
             } else {
                 console.log(response);
             }
@@ -69,13 +68,6 @@ export class ListPlatComponent implements OnInit {
             console.log (response) ; 
         }
         this.api.getRestauts().subscribe(success,error)
-    }
-
-    Join_Restaut(){
-        this.restauts_for_join = {} ;
-        for(let restaut of this.restauts){
-            this.restauts_for_join[restaut._id] = restaut;
-        } 
     }
 
     confirm_command(plat:any){

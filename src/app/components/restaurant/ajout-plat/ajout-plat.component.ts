@@ -78,7 +78,11 @@ export class AjoutPlatComponent implements OnInit {
             "nom" : this.formulaire_Control.get("nom").value,
             "type" : this.formulaire_Control.get("type").value,
             "prix" : this.formulaire_Control.get("prix").value,
-            "restaut" : this.tools.get("user").user.user._id 
+            "restaut" : {
+                "_id" : this.tools.get("user").user.user._id,
+                "nom" : this.tools.get("user").user.user.restaut,
+                "local" : this.tools.get("user").user.user.local
+            } 
         }
         return plat ;
     }

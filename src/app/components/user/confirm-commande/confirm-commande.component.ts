@@ -24,7 +24,7 @@ export class ConfirmCommandeComponent implements OnInit {
         ) { 
         this.formulaire_Control = formBuilder.group({
             quantite : ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
-            lieu : ['',[Validators.required,Validators.pattern('^[a-zA-Z]+.*$')]],
+            lieu : ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+.*$')]],
         });
     }
 

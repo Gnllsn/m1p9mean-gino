@@ -1,38 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { MatDialog} from '@angular/material/dialog' ; 
 
 @Component({
-    selector: 'app-list-commande',
-    templateUrl: './list-commande.component.html',
-    styleUrls: ['./list-commande.component.scss']
+    selector: 'app-commandes',
+    templateUrl: './commandes.component.html',
+    styleUrls: ['./commandes.component.scss']
 })
-export class ListCommandeComponent implements OnInit {
+export class CommandesComponent implements OnInit {
 
     loading : any = {
-        data : true,
-        pret : {} 
+        data : true ,
+        asigner : {}
     }
-    commandes : any ;
-
+    commandes : any  ; 
     status : any = {
-        'en cours preparation' : 'Prêt'
+        'Prêt' : 'Assigner Livreur'
     }
 
     constructor(
         private api : ApiService,
-        private tools : ToolsService    
+        private dialog : MatDialog,
+        private tools : ToolsService
         ) {}
 
     ngOnInit(): void {
-        this.getCommandes_restaurant();
+        this.getCommandes_admin();
     }
 
-    getCommandes_restaurant(){
+    getCommandes_admin(){
         const success = (response:any) =>{
             if(response.status == 200){
-                this.commandes = response.data ;
-                this.init_pret();  
+                this.commandes = response.data ;  
+                this.init_asigner();
                 this.loading.data = false ; 
             }else{
                 console.log (response)
@@ -41,20 +42,20 @@ export class ListCommandeComponent implements OnInit {
         const error = (response:any)=>{
             console.log (response)
         }
-        this.loading.data = true ;
-        this.api.getCommandes_restaurant().subscribe(success,error)
+        this.loading.data = true ; 
+        this.api.getCommandes_admin().subscribe(success,error)
     }
 
-    init_pret(){
+    init_asigner(){
         for(let commande of this.commandes){
-            this.loading.pret[commande._id] = false;
+            this.loading.asigner[commande._id] = false ; 
         }
     }
 
-    pret(id:any){
+    asigner_livraison(commande:any){
         const success = (response:any) =>{
             if(response.status == 200){
-                window.location.reload();
+                window.location.reload()
             }else{
                 console.log (response)
             }
@@ -62,8 +63,8 @@ export class ListCommandeComponent implements OnInit {
         const error = (response:any)=>{
             console.log (response)
         }
-        this.loading.pret[id] = true ;
-        this.api.pret(id).subscribe(success,error)
+        this.loading.asigner[commande._id] = true ; 
+        this.api.asigner_livraison(commande).subscribe(success,error)
     }
 
 }

@@ -23,6 +23,10 @@ import { ModifierPlatComponent } from './components/restaurant/modifier-plat/mod
 import { ConfirmCommandeComponent } from './components/user/confirm-commande/confirm-commande.component';
 import { CommandeComponent } from './components/user/commande/commande.component';
 import { ListCommandeComponent } from './components/restaurant/list-commande/list-commande.component';
+import { CommandesComponent } from './components/e-kaly/commandes/commandes.component';
+import { RestaurantsComponent } from './components/e-kaly/restaurants/restaurants.component';
+import { LivreursComponent } from './components/e-kaly/livreurs/livreurs.component';
+import { HistoriquesComponent } from './components/e-kaly/historiques/historiques.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +46,11 @@ import { ListCommandeComponent } from './components/restaurant/list-commande/lis
     ModifierPlatComponent,
     ConfirmCommandeComponent,
     CommandeComponent,
-    ListCommandeComponent
+    ListCommandeComponent,
+    CommandesComponent,
+    RestaurantsComponent,
+    LivreursComponent,
+    HistoriquesComponent
     ],
     imports: [
     BrowserModule,

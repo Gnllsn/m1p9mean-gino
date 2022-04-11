@@ -84,5 +84,20 @@ export class ApiService {
         return this.http.get(environment.base_url+"admin/commandes",options);                           
     }
 
+    pret(id:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.post(environment.base_url+"restaurant/pret/"+id,null,options);                                   
+    }
+
+    getLivreur(){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.get(environment.base_url+"admin/livreurs",options);                                   
+    }
+
+    asigner_livraison(commande:any){
+        const options = this.tools.formOptionJSON(true);
+        return this.http.post(environment.base_url+"admin/asigner",commande,options);                                   
+    }
+
 }
 

@@ -18,7 +18,12 @@ import { ModifierPlatComponent } from './components/restaurant/modifier-plat/mod
 import { ListCommandeComponent } from './components/restaurant/list-commande/list-commande.component';
 
 import { LivreurHomeComponent } from './components/livreur/livreur-home/livreur-home.component';
+
 import { EKalyHomeComponent } from './components/e-kaly/e-kaly-home/e-kaly-home.component';
+import { CommandesComponent } from './components/e-kaly/commandes/commandes.component';
+import { RestaurantsComponent } from './components/e-kaly/restaurants/restaurants.component';
+import { LivreursComponent } from './components/e-kaly/livreurs/livreurs.component';
+import { HistoriquesComponent } from './components/e-kaly/historiques/historiques.component';
 
 const routes: Routes = [{
     path:'',
@@ -69,7 +74,23 @@ const routes: Routes = [{
     component:LivreurHomeComponent
 },{
     path:'admin',
-    component:EKalyHomeComponent
+    component:EKalyHomeComponent,
+    children : [{
+        path : '',
+        component : CommandesComponent
+    },{
+        path : 'commandes',
+        component : CommandesComponent
+    },{
+        path : 'restaurants',
+        component : RestaurantsComponent
+    },{
+        path : 'livreurs',
+        component : LivreursComponent
+    },{
+        path : 'historiques',
+        component : HistoriquesComponent
+    }]
 }
 ];
 
